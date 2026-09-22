@@ -7,7 +7,7 @@ export default {
 
     // 关键：使用 jurisdiction('us') 强制 DO 只在美国运行
     const usNamespace = env.PROXY_DO.jurisdiction('us');
-    const id = usNamespace.idFromName('us-proxy');
+    const id = usNamespace.idFromName('us-proxy-v2');
     const stub = usNamespace.get(id);
 
     return stub.fetch(request);
