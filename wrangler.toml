@@ -20,4 +20,4 @@ class_name = "ProxyDO"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["ProxyDO"]
+new_sqlite_classes = ["ProxyDO"]
