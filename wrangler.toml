@@ -14,3 +14,10 @@ workers_dev = true
 # routes = [
 #   { pattern = "your-domain.com/*", zone_name = "your-zone.com" }
 # ]
+[[durable_objects.bindings]]
+name = "PROXY_DO"
+class_name = "ProxyDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ProxyDO"]
