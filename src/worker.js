@@ -28,5 +28,5 @@ export class ProxyDO {
     const init = { method: request.method, headers: newHeaders, redirect: 'manual' };
     if (request.method !== 'GET' && request.method !== 'HEAD') init.body = request.body;
     return fetch(targetUrl, init);
-  },
+  }
 }
