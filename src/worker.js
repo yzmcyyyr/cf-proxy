@@ -2,16 +2,21 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/proxy/')) {
-      return new Response('CF Proxy (US via DO) is running.', { status: 200 });
+      return new Response('CF Proxy (US jurisdiction) is running.', { status: 200 });
     }
-    const id = env.PROXY_DO.idFromName('us-proxy');
-    const stub = env.PROXY_DO.get(id, { locationHint: 'enam' });
+
+    // 关键：使用 jurisdiction('us') 强制 DO 只在美国运行
+    const usNamespace = env.PROXY_DO.jurisdiction('us');
+    const id = usNamespace.idFromName('us-proxy');
+    const stub = usNamespace.get(id);
+
     return stub.fetch(request);
   },
 };
 
 export class ProxyDO {
   constructor(state, env) { this.state = state; }
+
   async fetch(request) {
     const url = new URL(request.url);
     const rest = url.pathname.slice('/proxy/'.length);
